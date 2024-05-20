@@ -1,0 +1,353 @@
+from Novice import Novice
+from Swordsman import Swordsman
+from Archer import Archer
+from Magician import Magician
+from Boss import Boss
+import random
+
+himet_wins = 0
+lukas_wins = 0
+
+while True:
+    print("")
+    
+    print("(S for Singleplayer | M for Multiplayer)")
+    gamemode = input("What gamemode will you play? ")
+    if gamemode in ["S", "s"]:
+        singleplayer = True
+        multiplayer = False 
+    elif gamemode in ["M", "m"]:
+        multiplayer = True 
+        singleplayer = False
+    else:
+        print("Unknown Input.")
+        singleplayer = False
+        multiplayer = False
+    
+    while singleplayer == True:
+    
+        Character1 = Novice("Lukas")
+        Character2 = Boss("Monster")
+
+        def enemy_encounter():
+            print("")
+            print("You encountered an enemy!")  
+            print("")
+        
+        def health_bar():
+            print("---------------")
+            print(f"{Character1.getUsername()} | HP: {Character1.getHp()}")
+            print(f"{Character2.getUsername()} | HP: {Character2.getHp()}")
+            print("---------------")
+        
+        enemy_encounter()
+        
+        health_bar()
+        
+        turn = True
+        
+        win_count = 0
+        
+        while turn == True:
+            
+            if win_count == 2:
+                def class_select_character1():
+                    print("")
+                    print("S for Swordsman | A for Archer | M for Magician")
+                    character1_class = input("What class would you select, Lukas? ")
+                    
+                    while True:
+                        if character1_class in ["S", "s"]:
+                            return Swordsman("Lukas")
+                        if character1_class in ["A", "a"]:
+                            return Archer("Lukas")
+                        if character1_class in ["M", "m"]:
+                            return Magician("Lukas")
+                        else:
+                            print("None of the choices we're picked. Pick again.")
+                            
+                class_select_character1()
+            else:
+                pass
+            
+            print("")
+        
+            def attack_phase_character1():
+                attack = input("What attack will you do, Lukas? ")
+                if attack in ["B", "b", "Basic", "basic"]:
+                    Character1.basicAttack(Character2)
+                elif attack in ["S", "s", "Slash", "slash"]:
+                    if not isinstance(Character1, Swordsman):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.slashAttack(Character2)
+                elif attack in ["R", "r", "Ranged", "ranged"]:
+                    if not isinstance(Character1, Archer):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.rangedAttack(Character2)
+                elif attack in ["M", "m", "Magic", "magic"]:
+                    if not isinstance(Character1, Magician):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.magicAttack(Character2)
+                else:
+                    print("You didn't do anything!")
+                    
+            attack_phase_character1()
+                    
+            ###############################################
+              
+            if Character1.getHp() <= 0:
+                    Character1.setHp(0)
+                    
+            if Character2.getHp() <= 0:
+                    Character2.setHp(0)
+                    
+            print("")
+            
+            health_bar()
+            
+            if Character1.getHp() <= 0:
+                turn = False
+                print("")
+                print("LUKAS LOST.")
+                break
+                
+            elif Character2.getHp() <= 0:
+                turn = True
+                print("")
+                print("You Won!")
+                win_count += 1
+                print(win_count)
+                Character2.setHp(145)
+                continue
+            
+            ###############################################
+        
+            print("")
+        
+            boss_attacks = [Character2.basicAttack, Character2.slashAttack, Character2.rangedAttack, Character2.magicAttack]
+            boss_attack = random.choice(boss_attacks)
+            boss_attack(Character1)
+            
+            ###############################################
+              
+            if Character1.getHp() <= 0:
+                    Character1.setHp(0)
+                    
+            if Character2.getHp() <= 0:
+                    Character2.setHp(0)
+                    
+            print("")
+            
+            health_bar()
+            
+            if Character1.getHp() <= 0:
+                turn = False
+                print("")
+                print("YOU DIED.")
+                break
+                
+            elif Character2.getHp() <= 0:
+                turn = True
+                print("")
+                print("You Won!")
+                win_count += 1
+                print(win_count)
+                Character2.setHp(145)
+                continue
+            
+            ###############################################
+            
+        print("")
+        play_again = (input("Do you want to fight again? Yes or No? "))
+        if play_again in ["Y", "y", "Yes", "yes"]:
+            continue
+        else:
+            break
+            
+    while multiplayer == True:
+    
+        def class_select_character1():
+            print("")
+            print("S for Swordsman | A for Archer | M for Magician")
+            character1_class = input("What class would you select, Lukas? ")
+            
+            while True:
+                if character1_class in ["S", "s"]:
+                    return Swordsman("Lukas")
+                if character1_class in ["A", "a"]:
+                    return Archer("Lukas")
+                if character1_class in ["M", "m"]:
+                    return Magician("Lukas")
+                else:
+                    print("None of the choices we're picked. Pick again.")
+                    
+            print("")
+                    
+        def class_select_character2():
+            print("")
+            print("S for Swordsman | A for Archer | M for Magician")
+            character2_class = input("How about you, Himet? ")
+    
+            while True:
+                if character2_class in ["S", "s"]:
+                    return Swordsman("Himet")
+                if character2_class in ["A", "a"]:
+                    return Archer("Himet")
+                if character2_class in ["M", "m"]:
+                    return Magician("Himet")
+                else:
+                    print("None of the choices we're picked. Pick again.")
+                    
+            print("")
+    
+        Character1 = class_select_character1()
+        Character2 = class_select_character2()
+    
+        def enemy_encounter():
+            print("")
+            print("You encountered an enemy!")  
+            print("")
+            
+        def health_bar():
+            print("---------------")
+            print(f"{Character1.getUsername()} | HP: {Character1.getHp()}")
+            print(f"{Character2.getUsername()} | HP: {Character2.getHp()}")
+            print("---------------")
+        
+        enemy_encounter()
+        health_bar()
+        
+        turn = True
+        
+        while turn == True:
+            
+            print("")
+            
+            rng_turns = random.randint(1, 6)
+            print("You'll attack " + str(rng_turns) + " times.")
+            
+            def attack_phase_character1():
+                attack = input("What attack will you do, Lukas? ")
+                if attack in ["B", "b", "Basic", "basic"]:
+                    Character1.basicAttack(Character2)
+                elif attack in ["S", "s", "Slash", "slash"]:
+                    if not isinstance(Character1, Swordsman):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.slashAttack(Character2)
+                elif attack in ["R", "r", "Ranged", "ranged"]:
+                    if not isinstance(Character1, Archer):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.rangedAttack(Character2)
+                elif attack in ["M", "m", "Magic", "magic"]:
+                    if not isinstance(Character1, Magician):
+                        print("You didn't do anything!")
+                    else:
+                        Character1.magicAttack(Character2)
+                else:
+                    print("You didn't do anything!")
+                    
+            print("")
+            for _ in range (rng_turns):
+                attack_phase_character1()
+            
+            ###############################################
+              
+            if Character1.getHp() <= 0:
+                    Character1.setHp(0)
+                    
+            if Character2.getHp() <= 0:
+                    Character2.setHp(0)
+                    
+            print("")
+            
+            health_bar()
+            
+            if Character1.getHp() <= 0:
+                turn = False
+                print("")
+                print("LUKAS LOST.")
+                break
+                
+            elif Character2.getHp() <= 0:
+                turn = False
+                print("")
+                print("HIMET LOST.")
+                break
+            
+            ###############################################
+            
+            print("")
+            
+            rng_turns = random.randint(1, 6)
+            print("You'll attack " + str(rng_turns) + " times.")
+            
+            def attack_phase_character2():
+                attack = input("What attack will you do, Himet? ")
+                if attack in ["B", "b", "Basic", "basic"]:
+                    Character2.basicAttack(Character1)
+                elif attack in ["S", "s", "Slash", "slash"]:
+                    if not isinstance(Character2, Swordsman):
+                        print("You didn't do anything!")
+                    else:
+                        Character2.slashAttack(Character1)
+                elif attack in ["R", "r", "Ranged", "ranged"]:
+                    if not isinstance(Character2, Archer):
+                        print("You didn't do anything!")
+                    else:
+                        Character2.rangedAttack(Character1)
+                elif attack in ["M", "m", "Magic", "magic"]:
+                    if not isinstance(Character1, Magician):
+                        print("You didn't do anything!")
+                    else:
+                        Character2.magicAttack(Character1)
+                else:
+                    print("You didn't do anything!")
+                    
+            print("")
+            for _ in range (rng_turns):
+                attack_phase_character2()
+            
+            ###############################################
+                
+            if Character1.getHp() <= 0:
+                    Character1.setHp(0)
+                    
+            if Character2.getHp() <= 0:
+                    Character2.setHp(0)
+                    
+            print("")
+            
+            health_bar()
+            
+            if Character1.getHp() <= 0:
+                turn = False
+                print("")
+                print("LUKAS LOST.")
+                win_count += 1
+                break
+                
+            elif Character2.getHp() <= 0:
+                turn = False
+                print("")
+                print("HIMET LOST.")
+                win_count += 1
+                break
+            
+            ###############################################
+    
+        print("")
+        print("Lukas' Wins: " + str(lukas_wins))
+        print("Himet's Wins: " + str(himet_wins))
+        print("")
+                
+        play_again = (input("Do you want to duel again? Yes or No? "))
+        if play_again in ["Y", "y", "Yes", "yes"]:
+            continue
+        else:
+            print("May the winds guide us.")
+            break
