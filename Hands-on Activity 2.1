@@ -1,0 +1,53 @@
+#Student 1
+Student_Name = input("Name: ")
+print(" ")
+print("Prelim Grade") #Prelim
+PHOA = float(input("Enter Hands-on Activity grade: "))
+PQUIZ = float(input("Enter Prelim Quiz grade: "))
+PASSIGN = float(input("Enter Prelim Assignment grade: "))
+PCS = PHOA*.5 + PQUIZ*.3 + PASSIGN*.2 #Formula for Class standing
+print("Prelim Class Standing is: ", PCS)
+PEXAM = float(input("Enter Prelim Exam grade: ")) 
+PG = PEXAM*.5 + PCS*.5 #Formula for Prelim Grade 
+print("Prelim Grade is: ", "%.2f" % PG)
+print(" ")
+print("Midterm Grade")#Midterm
+MHOA = float(input("Enter Hands on Activity grade: ")) 
+MQUIZ = float(input("Enter Quiz Grade: "))
+MASSIGN = float(input("Enter Assignment Grade: ")) 
+MCS = MHOA*.5 + MQUIZ*.3 + MASSIGN*.2
+print("Midterm Class Standing is: ", MCS)
+MEXAM = float(input("Enter Midterm Exam grade: ")) 
+MG = MEXAM*(1/3) + PG*(1/3) + MCS*(1/3)
+print("Midterm Grade is: ", "%.2f" % MG) 
+print(" ")
+print("Final Grade")#Final
+FHOA = float(input("Enter Hands on Activity grade: ")) 
+FQUIZ = float(input("Enter Quiz Grade: "))
+FASSIGN = float(input("Enter Assignment Grade: ")) 
+FCS = FHOA*.5 + FQUIZ*.3 + FASSIGN*.2
+print("Final Class Standing is: ", FCS)
+FEXAM = float(input("Enter Final Exam grade: ")) 
+FG = FEXAM*(1/3) + MG*(1/3) + FCS*(1/3)
+print("Final Grade is: ", "%.2f" % FG) 
+print(" ")
+if FG <= 100 and FG >= 94:
+  print("1.00")
+elif FG <= 93.99 and FG >= 88.5:
+  print("1.25")
+elif FG <= 88.49 and FG >= 83: 
+  print("1.50")
+elif FG <= 82.99 and FG >= 77.5:
+  print("1.75")
+elif FG <= 77.49 and FG >= 72: 
+  print("2.00")
+elif FG <= 71.99 and FG >= 65.5:
+  print("2.25")
+elif FG <= 65.49 and FG >= 61: 
+  print("2.50")
+elif FG <= 60.99 and FG >= 55.5:
+  print("2.75")
+elif FG <= 55.49 and FG >= 50: 
+  print("3.00")
+else:
+  print("Failed")
