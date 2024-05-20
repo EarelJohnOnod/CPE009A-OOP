@@ -1,0 +1,30 @@
+import math
+class RegularPolygon:
+    def __init__ (self, side):
+        self._side = side
+class Square (RegularPolygon):
+    def area (self):
+        return self._side * self._side
+class EquilateralTriangle (RegularPolygon):
+    def area (self):
+        return self._side * self._side * 0.433
+class Pentagon (RegularPolygon):
+    def area (self):
+        return 0.25 * math.sqrt(5 * (5 + 2 * math.sqrt(5))) * self._side ** 2
+class Hexagon (RegularPolygon):
+    def area (self):
+        return 1.5 * math.sqrt(3) * self._side ** 2
+class Octagon (RegularPolygon):
+    def area (self):
+        return 2 * (1 + math.sqrt(2)) * self._side ** 2
+
+obj1 = Square(4)
+obj2 = EquilateralTriangle(3)
+obj3 = Pentagon(5)
+obj4 = Hexagon(5)
+obj5 = Octagon(5)
+print(obj1.area())
+print(obj2.area())
+print(obj3.area())
+print(obj4.area())
+print(obj5.area())
