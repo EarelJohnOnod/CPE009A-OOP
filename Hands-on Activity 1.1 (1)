@@ -1,0 +1,5 @@
+base = float(input("Enter your base: "))
+height = float(input("Enter your height: "))
+area = 1/2*base*height
+
+print("The area of the triangle is:", area)
