@@ -1,0 +1,49 @@
+num1 = (input("Enter the first grade: "))
+num2 = (input("Enter the second grade: "))
+num3 = (input("Enter the third grade: "))
+ave = (int(num1) + int(num2) + int(num3)) / 3
+print("Average: " + str(ave))
+
+from tkinter import *
+
+class MyWindow:
+    def __init__(self, window):
+        self.lbl = Label(window, text="Average Calculator")
+        self.lbl.place(x=75, y=65)
+ 
+        self.lbl1 = Label(window, text="Grade 1:", fg="blue")
+        self.lbl1.place(x=80, y=100)
+        self.txt1 = Entry(window, bd=2)
+        self.txt1.place(x=150, y=100)
+ 
+        self.lbl2 = Label(window, text="Grade 2:", fg="orange")
+        self.lbl2.place(x=80, y=150)
+        self.txt2 = Entry(window, bd=2)
+        self.txt2.place(x=150, y=150)
+        
+        self.lbl3 = Label(window, text="Grade 3:", fg="red")
+        self.lbl3.place(x=80, y=200)
+        self.txt3 = Entry(window, bd=2)
+        self.txt3.place(x=150, y=200)
+ 
+        self.btn_add = Button(window, text="Get the Average!", command=self.add)
+        self.btn_add.place(x=165, y=250)
+    
+        self.lbl4 = Label(window, text="Average:")
+        self.lbl4.place(x=80, y=300)
+        self.txt4 = Entry(window, bd=2)
+        self.txt4.place(x=150, y=300)
+ 
+    def add(self):
+        self.txt4.delete(0, 'end')
+        num1 = int(self.txt1.get())
+        num2 = int(self.txt2.get())
+        num3 = int(self.txt3.get())
+        result = (num1 + num2 + num3) / 3
+        self.txt4.insert(END, str(result))
+ 
+window = Tk()
+mywin = MyWindow(window)
+window.geometry("400x400+40+90")
+window.title("Python Project")
+window.mainloop()
