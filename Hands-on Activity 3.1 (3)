@@ -1,0 +1,21 @@
+phonebook = [
+ {"id": 2310921,"name":"John Paul Antipolo", "contact": 
+"09945678956", "address": "Antipolo Rizal"},
+ {"id": 2310919,"name":"Ruud Van Apostol", "contact": 
+"09128561476", "address": "Mangahan,Pasig"} ,
+ {"id": 2323456,"name":"Royen Rosero", "contact": "09456712389", 
+"address": "Antipolo Rizal"}
+]
+def find_record(id):
+    for record in phonebook:
+        if record["id"] == id:
+            return record
+    return None
+id = int(input("Enter the id of the record you want to find: "))
+record = find_record(id)
+if record is not None:
+    print("Name: ", record["name"])
+    print("Contact: ", record["contact"])
+    print("Address: ", record["address"])
+else:
+    print("No record found with the given id.")
