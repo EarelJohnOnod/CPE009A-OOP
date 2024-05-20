@@ -1,0 +1,25 @@
+import math
+
+def quadratic_solver(a, b, c):
+    discriminant = b**2 - 4*a*c
+    
+    if discriminant >= 0:
+        root1 = (-b + math.sqrt(discriminant)) / (2*a)
+        root2 = (-b - math.sqrt(discriminant)) / (2*a)
+        roots = (root1, root2)
+        with open('quadratic_equation_results.txt', 'a') as file:
+            file.write(f"Inputs: a-{a}, b-{b}, c-{c}\n")
+            file.write(f"Roots: {roots}\n\n")
+    else:
+        roots = "Complex roots"
+        with open('quadratic_equation_results.txt', 'a') as file:
+            file.write(f"Inputs: a-{a}, b-{b}, c-{c}\n")
+            file.write(f"No real roots\n\n")
+            
+    return roots
+
+a = 1
+b = -3
+c = 2
+roots = quadratic_solver(a, b, c)
+print("Roots:", roots)
