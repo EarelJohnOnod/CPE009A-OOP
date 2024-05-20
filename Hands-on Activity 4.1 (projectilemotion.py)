@@ -1,0 +1,11 @@
+def word_filter(sentence, words_to_censor):
+  filtered_sentence = sentence
+  for word in words_to_censor:
+    filtered_sentence = filtered_sentence.replace(word, '*' * len(word))
+  return ' '.join(filtered_sentence.split())
+
+sentence = input("Give any sentences with bad words: ")
+words_to_censor = input("Give any words you want to censor, separated by spaces: ").split()
+
+filtered_sentence = word_filter(sentence, words_to_censor)
+print(filtered_sentence)
