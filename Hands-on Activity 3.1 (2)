@@ -1,0 +1,3 @@
+sentence = str(input("Give any sentences with a word stupid: "))
+sentence.split
+print(sentence.replace('stupid', '******'))
